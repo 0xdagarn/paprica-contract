@@ -50,6 +50,12 @@ contract MockERC721 is ERC721 {
             );
     }
 
+    function mintAndCreateAccount(uint tokenId) public {
+        _safeMint(msg.sender, tokenId);
+
+        createAccount(tokenId);
+    }
+
     function mint(address to, uint256 tokenId) external {
         _safeMint(to, tokenId);
     }
