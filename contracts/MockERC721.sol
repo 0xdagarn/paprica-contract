@@ -66,7 +66,7 @@ contract MockERC721 is ERC721 {
         _requireMinted(tokenId);
 
         address tba = getAccount(tokenId);
-        uint256 balance = token.balanceOf(tba);
+        string memory balance = (token.balanceOf(tba) / 10**18).toString();
 
         string[] memory uriParts = new string[](4);
 
@@ -77,9 +77,7 @@ contract MockERC721 is ERC721 {
                 tokenId.toString(),
                 '",',
                 '"description":"Paprica are NFT owned accounts (6551) that accept Fan Token and only return it when burned.',
-                '"attributes":[{"trait_type":"Balance","value":"',
-                balance,
-                '"}',
+                '",',
                 '"image":"data:image/svg+xml;base64,'
             )
         );
@@ -87,7 +85,7 @@ contract MockERC721 is ERC721 {
             abi.encodePacked(
                 '<svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">',
                 '<rect width="1000" height="1000" fill="hsl(',
-                balance.toString(),
+                balance,
                 ', 78%, 56%)"/>',
                 '<text x="80" y="276" fill="white" font-family="Helvetica" font-size="130" font-weight="bold">',
                 "Fan #",
@@ -96,7 +94,7 @@ contract MockERC721 is ERC721 {
                 '<text x="80" y="425" fill="white" font-family="Helvetica" font-size="130" font-weight="bold">',
                 " contains </text>",
                 '<text x="80" y="574" fill="white" font-family="Helvetica" font-size="130" font-weight="bold">',
-                balance.toString(),
+                balance,
                 " Tokens",
                 "</text>",
                 "</svg>"
